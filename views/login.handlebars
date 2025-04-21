@@ -1,0 +1,83 @@
+<div class="auth-container">
+    <div class="login-form">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username-login">Username:</label>
+                <input type="text" id="username-login" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password-login">Password:</label>
+                <input type="password" id="password-login" name="password" required>
+            </div>
+        </form>
+    </div>
+
+    <div class="signup-form">
+        <h2>signup</h2>
+        <form id="signup-form"></form>
+        <div class="form-group">
+            <label for="username-signup">Username</label>
+            <input type="text" id="username-signup" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="email-signup">Email:</label>
+            <input type="email" id="email-signup" name="email" required>
+        </div>
+         <div class="form-group">
+            <label for="password-signup">Email:</label>
+            <input type="password" id="password-signup" name="password" required minlength="8">
+            <small>Password must be at least 8 characters</small>
+        </div>
+         <div class="form-group">
+            <button type="submit">Signup</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username-login").value.trim();
+        const password = document.getElementById("password-login").value.trim();
+
+        if(username && password) {
+            const response = await fetch("/auth/login", {
+                method: "POST",
+                body: JSON.stringify({username, password}),
+                headers: {"Content-Type": "application/json"},
+            });
+
+            if(response.ok) {
+                document.location.replace("/profile");
+            } else {
+                const data = await response.json();
+                alert(data.message || "Failed to login");
+            }
+        }
+    })
+
+    document.getElementById("signup-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username-login").value.trim();
+        const email = document.getElementById("email-login").value.trim();
+        const password = document.getElementById("password-login").value.trim();
+
+        if(username && email && password) {
+            const response = await fetch("/auth/signup", {
+                method: "POST",
+                body: JSON.stringify({username, email, password}),
+                headers: {"Content-Type": "application/json"},
+            });
+
+            if(response.ok) {
+                document.location.replace("/profile");
+            } else {
+                const data = await response.json();
+                alert(data.message || "Failed to sign up");
+            }
+        }
+    });
+</script>
