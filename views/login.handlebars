@@ -10,12 +10,15 @@
                 <label for="password-login">Password:</label>
                 <input type="password" id="password-login" name="password" required>
             </div>
+            <div class="form-group">
+                <button type="submit">login</button>
+            </div>
         </form>
     </div>
 
     <div class="signup-form">
         <h2>signup</h2>
-        <form id="signup-form"></form>
+        <form id="signup-form">
         <div class="form-group">
             <label for="username-signup">Username</label>
             <input type="text" id="username-signup" name="username" required>
@@ -32,6 +35,7 @@
          <div class="form-group">
             <button type="submit">Signup</button>
         </div>
+        </form>
     </div>
 </div>
 
@@ -43,7 +47,7 @@
         const password = document.getElementById("password-login").value.trim();
 
         if(username && password) {
-            const response = await fetch("/auth/login", {
+            const response = await fetch("/auth/login", { /* /auth */
                 method: "POST",
                 body: JSON.stringify({username, password}),
                 headers: {"Content-Type": "application/json"},
@@ -61,12 +65,12 @@
     document.getElementById("signup-form").addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById("username-login").value.trim();
-        const email = document.getElementById("email-login").value.trim();
-        const password = document.getElementById("password-login").value.trim();
+        const username = document.getElementById("username-signup").value.trim();
+        const email = document.getElementById("email-signup").value.trim();
+        const password = document.getElementById("password-signup").value.trim();
 
         if(username && email && password) {
-            const response = await fetch("/auth/signup", {
+            const response = await fetch("/auth/signup", { /* /auth */
                 method: "POST",
                 body: JSON.stringify({username, email, password}),
                 headers: {"Content-Type": "application/json"},
