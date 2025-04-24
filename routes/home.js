@@ -2,9 +2,9 @@ const router = require("express").Router();
 const withAuth = require("../middleware/auth");
 const { User } = require("../models");
 
-router.get("/about", (req,res) => {
-    res.render("about", {
-        title: "about us", 
+router.get("/TeamBuilder", withAuth, async (req,res) => {
+    res.render("TeamBuilder", {
+        title: "TeamBuilder", 
         logged_in: req.session.logged_in
     });
 });
