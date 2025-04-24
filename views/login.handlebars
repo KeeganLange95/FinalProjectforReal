@@ -19,22 +19,22 @@
     <div class="signup-form">
         <h2>signup</h2>
         <form id="signup-form">
-        <div class="form-group">
-            <label for="username-signup">Username</label>
-            <input type="text" id="username-signup" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="email-signup">Email:</label>
-            <input type="email" id="email-signup" name="email" required>
-        </div>
-         <div class="form-group">
-            <label for="password-signup">Password:</label>
-            <input type="password" id="password-signup" name="password" required minlength="8">
-            <small>Password must be at least 8 characters</small>
-        </div>
-         <div class="form-group">
-            <button type="submit">Signup</button>
-        </div>
+            <div class="form-group">
+                <label for="username-signup">Username</label>
+                <input type="text" id="username-signup" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email-signup">Email:</label>
+                <input type="email" id="email-signup" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password-signup">Password:</label>
+                <input type="password" id="password-signup" name="password" required minlength="8">
+                <small>Password must be at least 8 characters</small>
+            </div>
+            <div class="form-group">
+                <button type="submit">Signup</button>
+            </div>
         </form>
     </div>
 </div>
@@ -66,8 +66,8 @@
         e.preventDefault();
 
         const username = document.getElementById("username-signup").value.trim();
-        const email = document.getElementById("email-signup").value.trim();
         const password = document.getElementById("password-signup").value.trim();
+        const email = document.getElementById("email-signup").value.trim();
 
         if(username && email && password) {
             const response = await fetch("/auth/signup", { /* /auth */
