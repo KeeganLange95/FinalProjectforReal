@@ -1,3 +1,15 @@
 <div class="TeamBuilder-container">
-    <p>this is the team builder</p>
+  <p>this is the team builder</p>
+
+  <div class="character-container">
+
+    <h1>{{title}}</h1>
+    <ul>
+      {{#each apiInfo}}
+        <button id={{this.charName}}>{{this.charName}}</button>
+      {{/each}}
+    </ul>
+  </div>
 </div>
+
+<script src="/public/css/teamBuilderCode.js"></script>
