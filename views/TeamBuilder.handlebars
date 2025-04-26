@@ -1,24 +1,27 @@
 <div class="TeamBuilder-container">
   <h1>your team</h1>
-  <h2 id="team-slot-1">slot empty</h2>
-  <h2 id="team-slot-2">slot empty</h2>
-  <h2 id="team-slot-3">slot empty</h2>
-  <h2 id="team-slot-4">slot empty</h2>
-  <h2 id="team-slot-5">slot empty</h2>
-
+  <div class="team-container">
+    <h2 id="team-slot-1" class="team-member">slot empty</h2>
+    <h2 id="team-slot-2" class="team-member">slot empty</h2>
+    <h2 id="team-slot-3" class="team-member">slot empty</h2>
+    <h2 id="team-slot-4" class="team-member">slot empty</h2>
+    <h2 id="team-slot-5" class="team-member">slot empty</h2>
+  </div>
   <button id="team-save-button">Save team</button>
   <button id="team-clear-button">Clear team</button>
-
+  <h1>character list</h1>
   <div class="character-container">
-    <h1>character list</h1>
     <ul>
       {{#each apiInfo}}
-        <h3 class="char-list-name">{{this.charName}}</h3>
-        <li class="char-list-item">role: {{this.role}}</li>
-        <li class="char-list-item">faction: {{this.faction}}</li>
-        <li class="char-list-item">Broader Faction: {{this.race}}</li>
-        <button id={{this.charName}} class="char-list-button">Add to Team</button>
+        <div class="char-container">
+          <h3 class="char-list-name">{{this.charName}}</h3>
+          <li class="char-list-item">Role: {{this.role}}</li>
+          <li class="char-list-item">Faction: {{this.faction}}</li>
+          <li class="char-list-item">Broader Faction: {{this.race}}</li>
+          <button id={{this.charName}} class="char-list-button">Add to Team</button>
+        </div>
       {{/each}}
+
     </ul>
   </div>
 </div>
