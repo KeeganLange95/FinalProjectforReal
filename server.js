@@ -6,6 +6,7 @@ const exphbs = require("express-handlebars");
 const helmet = require("helmet");
 const fs = require("fs-extra");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const teamRoutes = require("./routes/auth");
 
 const routes = require("./routes");
 const sequelize = require("./config/database");
@@ -69,6 +70,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
+app.use("/teams", teamRoutes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>

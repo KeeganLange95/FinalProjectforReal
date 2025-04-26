@@ -1,3 +1,6 @@
+const router = require("../../routes");
+const { team } = require("../models");
+
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll("button");
   buttons.forEach((button) => {
@@ -13,7 +16,43 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("team-slot-5").textContent,
         ];
         console.log(team);
-        alert("Team saved: " + team.join(", "));
+        if (team.includes("slot empty")) {
+          alert("Please fill all team slots before saving.");
+          return;
+        } else {
+          try {
+            //const teamInfo = team.join(", ");
+
+            fetch("/auth/team", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                member1: team[0],
+                member2: team[1],
+                member3: team[2],
+                member4: team[3],
+                member5: team[4],
+              }),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  alert("Failed to save team.");
+                }
+              })
+              .then((data) => {
+                console.log(data);
+                alert("Team saved successfully!");
+              });
+          } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+            alert("Failed to save team.");
+          }
+        }
       } else if (button.id === "team-clear-button") {
         document.getElementById("team-slot-1").textContent = "slot empty";
         document.getElementById("team-slot-2").textContent = "slot empty";
