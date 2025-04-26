@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const team = JSON.parse(localStorage.getItem("team"));
+
+    document.getElementById("team-slot-1").textContent = team[0];
+    document.getElementById("team-slot-2").textContent = team[1];
+    document.getElementById("team-slot-3").textContent = team[2];
+    document.getElementById("team-slot-4").textContent = team[3];
+    document.getElementById("team-slot-5").textContent = team[4];
+  } catch (err) {
+    console.log("failed to get localstorage", err);
+  }
   const buttons = document.querySelectorAll("button");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -13,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("team-slot-5").textContent,
         ];
         console.log(team);
+        localStorage.setItem("team", JSON.stringify(team));
+
         alert("Team saved: " + team.join(", "));
       } else if (button.id === "team-clear-button") {
         document.getElementById("team-slot-1").textContent = "slot empty";
